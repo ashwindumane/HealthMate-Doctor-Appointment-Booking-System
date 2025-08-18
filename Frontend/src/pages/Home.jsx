@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import SpecialityMenu from '../components/SpecialityMenu';
 import TopDoctor from '../components/TopDoctor';
 import Banner from '../components/Banner';
-import { assets } from '../assets/assets';
 
 function Home() {
   const healthTips = [
@@ -30,28 +29,34 @@ function Home() {
   ];
 
   return (
-    <div className="overflow-hidden">
-      {/* Existing sections */}
+    <div className="overflow-x-hidden">
+      {/* Header Section - Reduced bottom margin */}
       <Header />
+      
+      {/* Speciality Menu - Adjusted padding */}
       <SpecialityMenu />
+      
+      {/* Top Doctors - Tightened layout */}
       <TopDoctor />
+      
+      {/* Banner - Reduced margins */}
       <Banner />
       
-      {/* New Health Tips Section */}
-      <div className="bg-gray-50 py-16 px-6">
+      {/* Health Tips Section - More compact layout */}
+      <div className="bg-gray-50 py-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-medium text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl font-medium text-center mb-8">
             Health <span className="text-[#5f6fff]">Tips</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {healthTips.map((tip, index) => (
               <div 
                 key={index} 
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white p-4 sm:p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="text-3xl mb-4">{tip.icon}</div>
-                <h3 className="text-xl font-medium mb-2">{tip.title}</h3>
-                <p className="text-gray-600">{tip.description}</p>
+                <div className="text-2xl sm:text-3xl mb-3">{tip.icon}</div>
+                <h3 className="text-lg sm:text-xl font-medium mb-1">{tip.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600">{tip.description}</p>
               </div>
             ))}
           </div>

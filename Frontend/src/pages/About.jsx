@@ -1,83 +1,84 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { assets } from '../assets/assets';
+import { Clock, MapPin, Heart } from 'lucide-react'; // icons
 
 function About() {
-  const [activeCard, setActiveCard] = useState(null);
-
-  const handleCardClick = (index) => {
-    setActiveCard(activeCard === index ? null : index);
-  };
-
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 text-gray-500">
-        <p>
-          ABOUT <span className="text-gray-700 font-medium">US</span>
-        </p>
-      </div>
+    <div className="relative">
+      {/* About Section */}
+      <div className="bg-gray-50 py-16 px-6 md:px-12 lg:px-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          
+          {/* Image */}
+          <img
+            className="w-full rounded-2xl shadow-lg"
+            src={assets.about_image}
+            alt="About Us"
+          />
 
-      <div className="my-10 flex flex-col md:flex-row gap-12">
-        <img
-          className="w-full md:max-w-[360px]"
-          src={assets.about_image}
-          alt="About Us"
-        />
+          {/* Text */}
+          <div className="space-y-6 text-gray-600">
+            <h2 className="text-3xl font-bold text-gray-800">
+              About <span className="text-indigo-600">Us</span>
+            </h2>
+            <p>
+              HealthMate lets users quickly book appointments with specialized doctors. 
+              Browse by medical expertise, view doctor profiles, and choose time slots. 
+              No more long queues or waiting — healthcare is now just a click away.
+            </p>
+            <p>
+              Doctors get access to a personalized dashboard to manage appointments, 
+              track patient progress, and simplify consultation workflows. 
+              Our platform ensures smooth communication and efficiency.
+            </p>
 
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600">
-          <p className="text-gray-800">
-           Prescripto lets users quickly book appointments with specialized doctors.
-           Browse by medical expertise, view doctor profiles, and choose time slots.
-           No more long queues or waiting — healthcare is now just a click away.
-          </p>
-          <p>
-            Doctors can log in to access a personalized dashboard showing upcoming appointments.
-            They can mark appointments as complete or cancelled and manage their profiles.
-            This panel simplifies patient tracking and enhances consultation management.
-          </p>
-          <b>Our Vision</b>
-          <p>
-            To revolutionize healthcare access through seamless digital solutions.
-            We aim to connect patients and doctors with speed, trust, and simplicity.
-            Prescripto envisions a future where healthcare is accessible to everyone, everywhere.
-          </p>
+            {/* Vision Box */}
+            <div className="bg-white border-l-4 border-indigo-600 p-4 rounded shadow-sm">
+              <h3 className="font-semibold text-gray-800 mb-2">Our Vision</h3>
+              <p>
+                To revolutionize healthcare access through seamless digital solutions. 
+                We aim to connect patients and doctors with speed, trust, and simplicity. 
+                HealthMate envisions a future where healthcare is accessible to everyone, everywhere.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="text-xl my-10">
-        <p>
-          WHY <span className="text-gray-700 font-semibold">CHOOSE US</span>
-        </p>
-      </div>
+      {/* Why Choose Us */}
+      <div className="py-16 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+        <h2 className="text-center text-2xl font-bold mb-10">
+          Why <span className="text-indigo-600">Choose Us</span>
+        </h2>
 
-      <div className="flex flex-col md:flex-row mb-20 gap-4">
-        {[ 
-          {
-            title: "Efficiency",
-            description: "Streamlined appointment scheduling that fits into your busy lifestyle.",
-          },
-          {
-            title: "Convenience",
-            description: "Access to a network of trusted healthcare professionals in your area.",
-          },
-          {
-            title: "Personalization",
-            description: "Tailored recommendations and reminders to help you stay on top of your health.",
-          }
-        ].map((card, index) => (
-          <div
-            key={index}
-            className={`
-              border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px]
-              transition-all duration-300 text-gray-600 cursor-pointer
-              hover:bg-[#5f6fff] hover:text-white
-              ${activeCard === index ? 'bg-[#5f6fff] text-white' : ''}
-            `}
-            onClick={() => handleCardClick(index)}
-          >
-            <b>{card.title}:</b>
-            <p>{card.description}</p>
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          <div className="bg-white p-8 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all text-center">
+            <Clock className="mx-auto mb-4 text-indigo-600" size={36} />
+            <h3 className="font-semibold text-lg mb-2">Efficiency</h3>
+            <p className="text-gray-600">
+              Streamlined appointment scheduling that fits into your busy lifestyle.
+            </p>
           </div>
-        ))}
+
+          {/* Card 2 */}
+          <div className="bg-white p-8 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all text-center">
+            <MapPin className="mx-auto mb-4 text-indigo-600" size={36} />
+            <h3 className="font-semibold text-lg mb-2">Convenience</h3>
+            <p className="text-gray-600">
+              Access a network of trusted healthcare professionals in your area.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white p-8 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all text-center">
+            <Heart className="mx-auto mb-4 text-indigo-600" size={36} />
+            <h3 className="font-semibold text-lg mb-2">Personalization</h3>
+            <p className="text-gray-600">
+              Tailored recommendations and reminders to help you stay on top of your health.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
