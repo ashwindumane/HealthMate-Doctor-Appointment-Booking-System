@@ -30,6 +30,7 @@ Built with **React, Node.js, Express, MongoDB**, and integrated with **Razorpay 
 ---
 
 ## 🛠️ Tech Stack
+
 **Frontend:** React, Tailwind CSS, React Router, Axios  
 **Backend:** Node.js, Express.js, MongoDB, Mongoose  
 **Authentication:** JWT, bcrypt  
@@ -37,9 +38,12 @@ Built with **React, Node.js, Express, MongoDB**, and integrated with **Razorpay 
 **Deployment:** Vercel (Frontend), Render (Backend)  
 **Cloud Storage:** Cloudinary (for image uploads)  
 
+---
+
 ## ⚙️ Environment Variables
 
-**Backend (.env)**
+### Backend (`.env`)
+```env
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
@@ -47,6 +51,7 @@ CLOUDINARY_API_KEY=your_cloudinary_key
 CLOUDINARY_SECRET=your_cloudinary_secret
 RAZORPAY_KEY_ID=your_razorpay_key
 RAZORPAY_SECRET=your_razorpay_secret
+
 
 **Frontend (.env)**
 VITE_BACKEND_URL=your_backend_url
