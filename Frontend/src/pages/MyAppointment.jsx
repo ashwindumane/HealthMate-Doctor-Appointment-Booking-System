@@ -55,38 +55,50 @@ function MyAppointment() {
     }
   };
 
-  const initPay = (order) => {
-    const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-      amount: order.amount,
-      currency: order.currency,
-      name: 'Appointment Payment',
-      description: 'Appointment Payment',
-      order_id: order.id,
-
-      handler: async (response) => {
-        try {
-          const { data } = await axios.post(
-            backendUrl + '/api/user/verifyRazorpay',
-            response,
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          );
-
-          if (data.success) {
-            getUserAppointment();
-            navigate('/my-appointment');
+const initPay = (order) => {
+  const options = {
+    key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+    amount: order.amount,
+    currency: order.currency,
+    name: 'HealthMate Appointment',
+    description: 'Appointment Booking Payment',
+    order_id: order.id,
+    handler: async (response) => {
+      try {
+        const { data } = await axios.post(
+          `${backendUrl}/api/user/verifyRazorpay`,
+          response,
+          {
+            headers: { 
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
           }
-        } catch (error) {
-          toast.error(error.message);
-        }
-      }
-    };
+        );
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+        if (data.success) {
+          toast.success('Payment successful!');
+          getUserAppointment();
+        } else {
+          toast.error('Payment verification failed');
+        }
+      } catch (error) {
+        console.error('Payment error:', error);
+        toast.error('Payment failed. Please try again.');
+      }
+    },
+    prefill: {
+      name: userData?.name || '',
+      email: userData?.email || '',
+    },
+    theme: {
+      color: '#5f6fff'
+    }
   };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
 
   const appointmentRazorpay = async (appointmentId) => {
     try {
@@ -126,9 +138,9 @@ function MyAppointment() {
           {appointments.map((item, index) => {
             if (!item.docData) return null;
 
-            const doctorImage = item.docData.image?.startsWith("http")
-              ? item.docData.image
-              : `${backendUrl}${item.docData.image}`;
+const doctorImage = item.docData?.image?.startsWith("http")
+  ? item.docData.image
+  : `${backendUrl}${item.docData?.image}`;
 
             return (
               <div
