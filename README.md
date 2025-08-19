@@ -42,7 +42,7 @@ Built with **React, Node.js, Express, MongoDB**, and integrated with **Razorpay 
 
 ## ⚙️ Environment Variables
 
-### Backend (`.env`)
+## Backend (`.env`)
 ```env
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -52,8 +52,7 @@ CLOUDINARY_SECRET=your_cloudinary_secret
 RAZORPAY_KEY_ID=your_razorpay_key
 RAZORPAY_SECRET=your_razorpay_secret
 
-
-**Frontend (.env)**
+## Frontend (`.env`)
 VITE_BACKEND_URL=your_backend_url
 VITE_RAZORPAY_KEY_ID=your_razorpay_key
 
