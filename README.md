@@ -39,25 +39,19 @@ Built with **React, Node.js, Express, MongoDB**, and integrated with **Razorpay 
 **Cloud Storage:** Cloudinary (for image uploads)  
 
 ---
-
 ## ⚙️ Environment Variables
+**Backend (.env)**  
+MONGODB_URI=your_mongodb_connection_string  
+JWT_SECRET=your_jwt_secret  
+CLOUDINARY_CLOUD_NAME=your_cloudinary_name  
+CLOUDINARY_API_KEY=your_cloudinary_key  
+CLOUDINARY_SECRET=your_cloudinary_secret  
+RAZORPAY_KEY_ID=your_razorpay_key  
+RAZORPAY_SECRET=your_razorpay_secret  
 
-**Backend (`.env`)**
-
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_SECRET=your_cloudinary_secret
-RAZORPAY_KEY_ID=your_razorpay_key
-RAZORPAY_SECRET=your_razorpay_secret
-
-**Frontend (`.env`)**
-
-VITE_BACKEND_URL=your_backend_url
-VITE_RAZORPAY_KEY_ID=your_razorpay_key
-
----
+**Frontend (.env)**  
+VITE_BACKEND_URL=your_backend_url  
+VITE_RAZORPAY_KEY_ID=your_razorpay_key  
 
 ## 📦 Installation
 
