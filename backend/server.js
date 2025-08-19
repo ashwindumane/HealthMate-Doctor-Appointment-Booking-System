@@ -1,6 +1,5 @@
-//we are building basic express app, so we have to first make server.js folder then (npm insist)
 import express from 'express'
-import cors from'cors'
+import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js'
 import connectCloudinary from './config/cloudinary.js'
@@ -8,25 +7,49 @@ import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import UserRouter from './routes/userRoutes.js'
 
-
-
-//app config
+// App config
 const app = express()
 const port = process.env.PORT || 4000
-connectDB()
-connectCloudinary()
 
-//middlewares
-app.use(express.json())
-app.use(cors())
+// Middlewares
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(cors({
+    origin: ['https://healthmate-doctor-appointment-booki.vercel.app/', 'http://localhost:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-//api endpoints
-app.use('/api/admin',adminRouter)
+// API endpoints
+app.use('/api/admin', adminRouter)
 app.use('/api/doctor', doctorRouter)
 app.use('/api/user', UserRouter)
-// localhost:400/api/admin
-app.get('/' , (req,res) => {
+
+// Health check endpoint
+app.get('/', (req, res) => {
     res.send('API WORKING')
 })
 
-app.listen(port, () => console.log("server started", port))
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ success: false, message: 'Something went wrong!' });
+});
+
+// Start server after DB connection
+const startServer = async () => {
+    try {
+        await connectDB();
+        await connectCloudinary();
+        
+        app.listen(port, () => {
+            console.log(`Server started on port ${port}`);
+        });
+    } catch (error) {
+        console.error("Failed to start server:", error);
+        process.exit(1);
+    }
+};
+
+startServer();

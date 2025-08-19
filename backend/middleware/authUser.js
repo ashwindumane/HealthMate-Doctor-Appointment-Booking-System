@@ -10,8 +10,7 @@ const authUser = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
     const token_decode = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = token_decode;
-
+    req.userId = token_decode.id; // Changed from req.user to req.userId
     next();
   } catch (error) {
     console.error('Auth Error:', error.message);

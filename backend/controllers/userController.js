@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
 //Get User Profile
 const getProfile = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.userId; // Changed from req.user.id to req.userId
     const userData = await userModel.findById(userId).select('-password');
 
     if (!userData) {
@@ -95,8 +95,8 @@ const getProfile = async (req, res) => {
 //Update User Profile
 const updateProfile = async (req, res) => {
   try {
-    const { userId, name, phone, address, dob, gender } = req.body;
-    const imageFile = req.file;
+    const userId = req.userId; // Changed from req.body.userId to req.userId
+    const { name, phone, address, dob, gender } = req.body;
 
     if (!name || !phone || !dob || !gender) {
       return res.json({ success: false, message: 'Data Missing' });
@@ -134,12 +134,9 @@ const updateProfile = async (req, res) => {
 //Book Appointment
 
 const bookAppointment = async (req, res) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
     const { docId, slotDate, slotTime } = req.body;
-    const userId = req.user.id;
+    const userId = req.userId; // Get userId from auth middleware
 
     if (!userId || !docId || !slotDate || !slotTime) {
       await session.abortTransaction();
@@ -226,7 +223,7 @@ const bookAppointment = async (req, res) => {
 
 const getUserAppointments = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.userId; // Changed from req.user.id to req.userId
 
     const appointments = await appointmentModel
       .find({ userId })

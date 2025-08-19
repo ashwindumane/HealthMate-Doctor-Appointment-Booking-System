@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: prescripto-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromSecret: MONGODB_URI
+      - key: CLOUDINARY_NAME
+        fromSecret: CLOUDINARY_NAME
+      - key: CLOUDINARY_API_KEY
+        fromSecret: CLOUDINARY_API_KEY
+      - key: CLOUDINARY_SECRET_KEY
+        fromSecret: CLOUDINARY_SECRET_KEY
+      - key: ADMIN_EMAIL
+        fromSecret: ADMIN_EMAIL
+      - key: ADMIN_PASSWORD
+        fromSecret: ADMIN_PASSWORD
+      - key: JWT_SECRET
+        fromSecret: JWT_SECRET
+      - key: RAZORPAY_KEY_ID
+        fromSecret: RAZORPAY_KEY_ID
+      - key: RAZORPAY_KEY_SECRET
+        fromSecret: RAZORPAY_KEY_SECRET
+      - key: CURRENCY
+        value: INR
